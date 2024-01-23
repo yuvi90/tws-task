@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "../hooks/CartProvider";
 
 const ProductCard = ({ product }) => {
@@ -12,6 +12,14 @@ const ProductCard = ({ product }) => {
       setIsProductInCart(true);
     }
   };
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      if (cart.some((pro) => pro.id === product.id)) {
+        setIsProductInCart(true);
+      }
+    }
+  }, []);
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white border">
