@@ -3,7 +3,7 @@ import Form from "../components/Form";
 
 const Checkout = () => {
   return (
-    <div className="py-5">
+    <div className="p-5">
       <CartTable />
       <Form />
     </div>

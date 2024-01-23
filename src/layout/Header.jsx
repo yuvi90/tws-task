@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="bg-gray-800 p-4 text-white">
+    <header className="bg-gray-800 p-5 text-white">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <Link to="/">
