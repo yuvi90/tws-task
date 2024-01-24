@@ -24,7 +24,7 @@ const CartTable = () => {
               {cart.map((product) => (
                 <tr key={product.id}>
                   <td className="py-2 px-4">{product.title}</td>
-                  <td className="py-2 px-4">₹{product.price}</td>
+                  <td className="py-2 px-4 text-center">₹{product.price}</td>
                 </tr>
               ))}
             </tbody>

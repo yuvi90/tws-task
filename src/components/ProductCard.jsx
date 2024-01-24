@@ -6,13 +6,6 @@ const ProductCard = ({ product }) => {
   const { cart, setCart } = useCart();
   const [isProductInCart, setIsProductInCart] = useState(false);
 
-  const addToCartHandler = (product) => {
-    if (!cart.some((pro) => pro.id === product.id)) {
-      setCart((prevCart) => [...prevCart, product]);
-      setIsProductInCart(true);
-    }
-  };
-
   useEffect(() => {
     if (cart.length > 0) {
       if (cart.some((pro) => pro.id === product.id)) {
@@ -20,6 +13,18 @@ const ProductCard = ({ product }) => {
       }
     }
   }, []);
+
+  const addToCartHandler = (product) => {
+    if (!cart.some((pro) => pro.id === product.id)) {
+      setCart((prevCart) => [...prevCart, product]);
+      setIsProductInCart(true);
+    }
+  };
+  const removeHandler = (product) => {
+    const itemsInCart = cart.filter((pro) => pro.id !== product.id);
+    setCart([...itemsInCart]);
+    setIsProductInCart(false);
+  };
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white border">
@@ -33,13 +38,23 @@ const ProductCard = ({ product }) => {
 
       <div className="px-6 pb-4">
         <button
-          className={`bg-blue-500 text-white font-bold py-2 px-4 rounded-full ${
+          className={`bg-blue-500 text-white font-bold py-1 px-2 rounded-md ${
             isProductInCart ? "bg-gray-300" : "bg-blue-500 text-white"
           }`}
           onClick={() => addToCartHandler(product)}
           disabled={isProductInCart}
         >
           Add to Cart
+        </button>
+
+        <button
+          className={`bg-gray-300 text-white px-2 py-1 rounded-md ml-3 ${
+            isProductInCart && "bg-red-500"
+          }`}
+          onClick={() => removeHandler(product)}
+          disabled={!isProductInCart}
+        >
+          Remove
         </button>
       </div>
     </div>
